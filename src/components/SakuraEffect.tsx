@@ -14,7 +14,9 @@ export function SakuraEffect() {
   const [petals, setPetals] = useState<Petal[]>([]);
 
   useEffect(() => {
-    const newPetals = Array.from({ length: 20 }).map((_, i) => ({
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const petalCount = isMobile ? 10 : 20;
+    const newPetals = Array.from({ length: petalCount }).map((_, i) => ({
       id: i,
       x: Math.random() * 100,
       delay: Math.random() * 10,

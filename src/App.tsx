@@ -14,6 +14,7 @@ import { cn } from "./lib/utils";
 export default function App() {
   const [itinerary, setItinerary] = useState<Itinerary>(MOCK_ITINERARY);
   const [activeDay, setActiveDay] = useState(0);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   const handleShare = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -24,7 +25,7 @@ export default function App() {
     <div className="min-h-screen bg-slate-50 overflow-x-hidden">
       {/* Animated Background Particles */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        {[...Array(8)].map((_, i) => (
+        {[...Array(isMobile ? 4 : 8)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute h-64 w-64 rounded-full bg-pink-100/20 blur-3xl"
@@ -239,10 +240,10 @@ export default function App() {
       <footer className="relative z-10 border-t border-slate-200 bg-white py-12 mt-20">
         <div className="mx-auto max-w-7xl px-4 text-center">
           <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">
-            您的專屬南韓旅遊夥伴
+            瓜瓜的專屬南韓旅遊夥伴
           </p>
           <p className="mt-4 text-xs text-slate-400">
-            © 2026 為現代探險者精心打造。
+            © 2026 瓜瓜精心打造。
           </p>
         </div>
       </footer>

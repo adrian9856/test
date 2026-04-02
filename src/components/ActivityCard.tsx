@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { MapPin, Clock, DollarSign, Info, Utensils, Car, Camera, Coffee } from "lucide-react";
+import { MapPin, Clock, DollarSign, Info, Utensils, Car, Camera, Coffee, ChevronRight } from "lucide-react";
 import { Activity } from "../types";
 import { cn } from "../lib/utils";
 
@@ -46,9 +46,20 @@ export function ActivityCard({ activity, index }: { activity: Activity; index: n
         <p className="mt-1 text-slate-600 leading-relaxed">{activity.description}</p>
         
         {activity.location && (
-          <div className="mt-2 flex items-center gap-1 text-sm text-slate-400">
-            <MapPin className="h-3.5 w-3.5" />
-            <span>{activity.location}</span>
+          <div className="mt-2 flex items-center justify-between gap-1 text-sm text-slate-400">
+            <div className="flex items-center gap-1">
+              <MapPin className="h-3.5 w-3.5" />
+              <span>{activity.location}</span>
+            </div>
+            <a 
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(activity.location + " " + activity.title)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-bold text-pink-400 hover:text-pink-500 transition-colors flex items-center gap-1"
+            >
+              查看地圖
+              <ChevronRight className="h-3 w-3" />
+            </a>
           </div>
         )}
       </div>
